@@ -13,7 +13,10 @@ https://github.com/nglthu/OOP_N03_Term3_2025_K17
 
 ---
 
-## Stage 1  
+## Các đối tượng chính:
+1. **User**: Quản lý thông tin người dùng (ID, tên).
+2. **Diary**: Quản lý các nhật ký đi chơi (mã nhật ký, tiêu đề, chi phí, cảm xúc, đánh giá).
+3. **DiaryStatistics**: Thống kê chi tiêu và cảm xúc qua các nhật ký.
 
 ### 1. User (Thông tin người dùng)    
 class User {  
