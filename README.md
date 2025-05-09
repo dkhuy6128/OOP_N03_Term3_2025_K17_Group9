@@ -15,10 +15,10 @@ https://github.com/nglthu/OOP_N03_Term3_2025_K17
 
 ## Các đối tượng cơ sở cần thiết:
 1. userID: + Đối tượng ID duy nhất để liên kết với thông tin của người dùng
-                + Xác định và lưu trữ tất cả các nhật ký mà người dùng đã tạo, đảm bảo rằng mỗi nhật ký thuộc về một người dùng cụ thể
+            + Xác định và lưu trữ tất cả các nhật ký mà người dùng đã tạo, đảm bảo rằng mỗi nhật ký thuộc về một người dùng cụ thể
 
 2. diaryID: + Mã định danh duy nhất cho mỗi nhật kí mà người dùng tạo
-                 + Cho phép hệ thống dễ dàng phân biệt và truy xuất các nhật ký của người dùng, đặc biệt trong trường hợp một người dùng có nhiều nhật ký
+             + Cho phép hệ thống dễ dàng phân biệt và truy xuất các nhật ký của người dùng, đặc biệt trong trường hợp một người dùng có nhiều nhật ký
 
 3. title:  Ten gọi của mỗi nhật kí, người dung dễ dàng nhận diện và tìm kiếm
 
