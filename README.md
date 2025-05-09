@@ -13,11 +13,16 @@ https://github.com/nglthu/OOP_N03_Term3_2025_K17
 
 ---
 
-## Các đối tượng chính:
-1. **User**: Quản lý thông tin người dùng (ID, tên).
-2. **Diary**: Quản lý các nhật ký đi chơi (mã nhật ký, tiêu đề, chi phí, cảm xúc, đánh giá).
-3. **DiaryStatistics**: Thống kê chi tiêu và cảm xúc qua các nhật ký.
+## Các đối tượng cơ sở cần thiết:
+1. userID: + Đối tượng ID duy nhất để liên kết với thông tin của người dùng
+                + Xác định và lưu trữ tất cả các nhật ký mà người dùng đã tạo, đảm bảo rằng mỗi nhật ký thuộc về một người dùng cụ thể
 
+2. diaryID: + Mã định danh duy nhất cho mỗi nhật kí mà người dùng tạo
+                 + Cho phép hệ thống dễ dàng phân biệt và truy xuất các nhật ký của người dùng, đặc biệt trong trường hợp một người dùng có nhiều nhật ký
+
+3. title:  Ten gọi của mỗi nhật kí, người dung dễ dàng nhận diện và tìm kiếm
+
+## Các class chính:
 ### 1. User (Thông tin người dùng)    
 class User {  
     String userID;   // ID người dùng  
