@@ -13,6 +13,6 @@ public class Flower {
         this.s = s;
     }
     Flower() {
-        this("hello", "47");
+        this("hello", 47);
     }
 }

@@ -1,19 +1,11 @@
 package model;
 
 public class User {
-    String userID;
-    String name;
+    private String name;
+    private String userID;
 
-    public User(String userID, String name) {
-        this.userID = userID;
+    public User(String name, String userID) {
         this.name = name;
-    }
-
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
         this.userID = userID;
     }
 
@@ -21,7 +13,16 @@ public class User {
         return name;
     }
 
-    public void setName(String name) {
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUser(String name, String userID) {
         this.name = name;
+        this.userID = userID;
+    }
+
+    public String toString() {
+        return name + userID;
     }
 }
