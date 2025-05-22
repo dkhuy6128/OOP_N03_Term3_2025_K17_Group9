@@ -4,18 +4,18 @@ Giao diện Java Spring Boot.
 
 Có chức năng quản lý nhật ký và người dùng.
 
-🔧 Chức năng chính:
-✅ Thêm, sửa, xóa người dùng (User)
-✅ Liệt kê thông tin về người dùng, có thể lọc ra các người dùng theo tên hoặc ID
-✅ Có chức năng quản lý nhật ký cá nhân (Diary)
-Thêm, sửa, xóa nhật ký
+🔧 Chức năng chính:  
+✅ Thêm, sửa, xóa người dùng (User)  
+✅ Liệt kê thông tin về người dùng, có thể lọc ra các người dùng theo tên hoặc ID  
+✅ Có chức năng quản lý nhật ký cá nhân (Diary)  
+Thêm, sửa, xóa nhật ký  
+ 
+Nhật ký bao gồm các thông tin: ngày viết, tiêu đề, địa điểm, người tham gia, loại hoạt động (đi ăn, đi chơi,...), chi tiêu, cảm xúc, đánh giá và ghi chú.   
 
-Nhật ký bao gồm các thông tin: ngày viết, tiêu đề, địa điểm, người tham gia, loại hoạt động (đi ăn, đi chơi,...), chi tiêu, cảm xúc, đánh giá và ghi chú.
+✅ Có chức năng gán người dùng cho nhật ký   
+Một nhật ký có thể liên kết với nhiều người dùng, và một người dùng có thể có nhiều nhật ký.  
 
-✅ Có chức năng gán người dùng cho nhật ký
-Một nhật ký có thể liên kết với nhiều người dùng, và một người dùng có thể có nhiều nhật ký.
-
-💾 Lưu trữ dữ liệu:
+💾 Lưu trữ dữ liệu:  
 Dữ liệu được lưu trữ xuống file nhị phân để đảm bảo an toàn và dễ dàng truy xuất.
 
 🗂️ Cấu trúc chương trình:
