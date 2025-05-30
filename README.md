@@ -1,48 +1,36 @@
-# OOP_N03_Term3_2025_K17_Group28  
-https://github.com/nglthu/OOP_N03_Term3_2025_K17  
+📝 Xây dựng ứng dụng quản lý Nhật ký cá nhân
+🧩 Yêu cầu:
+Giao diện Java Spring Boot.
 
-## Member:  
-- Đỗ Khắc Huy  
+Có chức năng quản lý nhật ký và người dùng.
 
-## Xây dựng ứng dụng nhật kí đi chơi  
-Ứng dụng giúp người dùng:  
-- Ghi lại các khoản chi tiêu (ăn uống, đi chơi, ..)  
-- Ghi lại cảm nhận / cảm xúc liên quan đến nơi đó  
-- Đưa ra đánh giá cá nhân của người dùng (thích - không thích, 1 - 5 sao, ..)  
-- Thống kê chi tiêu và cảm xúc theo thời gian (ngày, tuần, tháng)  
+🔧 Chức năng chính:  
+✅ Thêm, sửa, xóa người dùng (User)  
+✅ Liệt kê thông tin về người dùng, có thể lọc ra các người dùng theo tên hoặc ID  
+✅ Có chức năng quản lý nhật ký cá nhân (Diary)  
+Thêm, sửa, xóa nhật ký  
+ 
+Nhật ký bao gồm các thông tin: ngày viết, tiêu đề, địa điểm, người tham gia, loại hoạt động (đi ăn, đi chơi,...), chi tiêu, cảm xúc, đánh giá và ghi chú.   
 
----
+✅ Có chức năng gán người dùng cho nhật ký   
+Một nhật ký có thể liên kết với nhiều người dùng, và một người dùng có thể có nhiều nhật ký.  
 
-## Các đối tượng cơ sở cần thiết:
-1. userID: + Đối tượng ID duy nhất để liên kết với thông tin của người dùng
-            + Xác định và lưu trữ tất cả các nhật ký mà người dùng đã tạo, đảm bảo rằng mỗi nhật ký thuộc về một người dùng cụ thể
+💾 Lưu trữ dữ liệu:  
+Dữ liệu được lưu trữ xuống file nhị phân để đảm bảo an toàn và dễ dàng truy xuất.
 
-2. diaryID: + Mã định danh duy nhất cho mỗi nhật kí mà người dùng tạo
-             + Cho phép hệ thống dễ dàng phân biệt và truy xuất các nhật ký của người dùng, đặc biệt trong trường hợp một người dùng có nhiều nhật ký
+🗂️ Cấu trúc chương trình:
+Cần tạo các lớp liên quan đến người dùng (User), nhật ký (Diary) và liên kết người dùng với nhật ký (UserDiary) để đọc, ghi xuống một hay nhiều file.
 
-3. title:  Ten gọi của mỗi nhật kí, người dung dễ dàng nhận diện và tìm kiếm
+🧠 Làm việc với dữ liệu trong bộ nhớ:
+Dữ liệu sẽ được lưu trữ trong các Collection tùy chọn như: ArrayList, LinkedList, Map, v.v. trong quá trình xử lý nghiệp vụ.
 
-## Các class chính:
-### 1. User (Thông tin người dùng)    
-class User {  
-    String userID;   // ID người dùng  
-    String name;     // Tên người dùng  
-}  
-### 2. Diary (Thông tin nhật kí)  
-class Diary {  
-    String diaryID;         // Mã định danh nhật kí  
-    LocalDate date;         // Ngày viết nhật kí  
-    String title;           // Tiêu đề  
-    String location;        // Địa điểm  
-    List<String> people;    // Danh sách người tham gia  
-    String activityType;    // Loại hoạt động (đi ăn, đi chơi, ...)  
-    Double amountSpent;     // Chi tiêu  
-    String feeling;         // Cảm nhận buổi hôm đó  
-    int rating;             // Đánh giá  
-    String notes;           // Ghi chú  
-}  
-### 3. UserDiary (liên kết thông tin người dùng với nhật kí)  
-class UserDiary {  
-    String userID;    // ID của người dùng  
-    String diaryID;   // ID của mục nhật ký  
-}  
+💡 Mở rộng (tuỳ chọn):
+Sinh viên có thể thêm các chức năng như:
+
+Tìm kiếm nhật ký theo từ khóa trong tiêu đề hoặc ghi chú.
+
+Lọc nhật ký theo ngày viết, loại hoạt động, hoặc mức độ cảm xúc.
+
+Xuất báo cáo hoạt động hoặc chi tiêu theo tháng/năm.
+
+Tính tổng chi tiêu hoặc số lượng hoạt động mỗi người dùng.
