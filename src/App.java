@@ -1,4 +1,5 @@
 import DiaryApp.DiaryApp;
+import Service.DiaryService;
 import model.Diary;
 
 import java.time.LocalDate;
@@ -58,6 +59,21 @@ public class App {
         System.out.println("\n== Thống kê ==");
         System.out.println("Tổng chi tiêu: " + app.getTotalSpent(userID));
         System.out.printf("Đánh giá trung bình: %.2f / 5\n", app.getAverageRating(userID));
+
+        // Nhập tháng và năm để lọc nhật ký
+        System.out.println("\n== Lọc nhật ký theo tháng ==");
+        System.out.print("Nhập tháng (1-12): ");
+        int month = sc.nextInt();
+        System.out.print("Nhập năm: ");
+        int year = sc.nextInt();
+
+        // Lấy nhật ký thực tế của người dùng
+        List<Diary> userDiaries = app.getDiariesByUser(userID); // Giả sử bạn có phương thức này
+
+        // In nhật ký theo tháng
+        DiaryService service = new DiaryService();
+        service.printDiariesByMonth(userDiaries, month, year);
+
         sc.close();
     }
 }

@@ -41,5 +41,9 @@ public class DiaryApp {
                 .average()
                 .orElse(0);
     }
+
+    public List<Diary> getDiariesByUser(String userID) {
+        return getUserDiaries(userID);
+    }    
 }
 
