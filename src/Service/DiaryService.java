@@ -31,3 +31,8 @@ public class DiaryService {
         }
     }
 }
+/* Miêu tả phương thức
+ + hiển thị danh sách các nhật kí được tạo trong một tháng cụ thể do người dùng nhập từ bàn phím
+ + yêu cầu người dùng nhập tháng và năm từ bàn phím, sau đó lọc danh sách nhật kí
+ + nếu tìm thấy, in ra thông tin chi tiết từng nhật kí(tiêu đề, địa điểm, ...)
+ + nếu không, thông báo không có nhật kí trong tháng đó */
