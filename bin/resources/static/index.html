@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diary App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+    input, textarea, button, select {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📘 Ghi chép Nhật Ký</h1>
+
+  <form id="diaryForm">
+    <label>Tiêu đề:</label>
+    <input type="text" name="title" required />
+
+    <label>Địa điểm:</label>
+    <input type="text" name="location" />
+
+    <label>Người tham gia (cách nhau bằng dấu phẩy):</label>
+    <input type="text" name="participants" />
+
+    <label>Hoạt động:</label>
+    <input type="text" name="activity" />
+
+    <label>Chi tiêu:</label>
+    <input type="number" step="0.01" name="amount" required />
+
+    <label>Ngày:</label>
+    <input type="date" name="date" required />
+
+    <label>Cảm xúc (😊, 😢, 😐, 😍,...):</label>
+    <input type="text" name="feeling" required />
+
+    <label>Đánh giá (0.5 đến 5.0):</label>
+    <input type="number" step="0.5" min="0.5" max="5" name="rating" required />
+
+    <label>Ghi chú:</label>
+    <textarea name="notes"></textarea>
+
+    <button type="submit">💾 Lưu nhật ký</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById("diaryForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const diary = {
+        title: formData.get("title"),
+        location: formData.get("location"),
+        participants: formData.get("participants").split(",").map(s => s.trim()),
+        activity: formData.get("activity"),
+        amount: parseFloat(formData.get("amount")),
+        date: formData.get("date"),
+        feeling: formData.get("feeling"),
+        rating: parseFloat(formData.get("rating")),
+        notes: formData.get("notes")
+      };
+
+      try {
+        const res = await fetch("http://localhost:8080/api/diaries/u1", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(diary)
+        });
+
+        const data = await res.json();
+        document.getElementById("result").innerHTML = `<p style="color: green;">✅ Nhật ký đã được lưu với ID: <b>${data.id}</b></p>`;
+        e.target.reset();
+      } catch (error) {
+        document.getElementById("result").innerHTML = `<p style="color: red;">❌ Lỗi khi lưu nhật ký. Hãy kiểm tra lại máy chủ!</p>`;
+        console.error("Failed:", error);
+      }
+    });
+  </script>
+
+</body>
+</html>
