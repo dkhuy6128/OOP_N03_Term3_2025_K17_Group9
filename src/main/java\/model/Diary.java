@@ -1,4 +1,4 @@
-package model;
+package DiaryApp.model;
 
 import java.time.LocalDate;
 import java.util.List;

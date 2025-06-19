@@ -1,5 +1,5 @@
 import DiaryApp.DiaryApp;
-import Service.DiaryService;
+import service.DiaryService;
 import model.Diary;
 
 import java.time.LocalDate;

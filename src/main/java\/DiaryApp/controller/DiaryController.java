@@ -18,28 +18,44 @@ public class DiaryController {
 
     @PostMapping("/{userId}")
     public Map<String, String> addDiary(@PathVariable String userId, @RequestBody DiaryRequest request) {
-        String diaryId = UUID.randomUUID().toString();
+        try {
+            String diaryId = UUID.randomUUID().toString();
 
-        Diary diary = new Diary(
-                diaryId,
-                request.date,
-                request.title,
-                request.location,
-                request.participants,
-                request.activity,
-                request.amount,
-                request.feeling,
-                request.rating,
-                request.notes
-        );
+            Diary diary = new Diary(
+                    diaryId,
+                    request.date,
+                    request.title,
+                    request.location,
+                    request.participants,
+                    request.activity,
+                    request.amount,
+                    request.feeling,
+                    request.rating,
+                    request.notes
+            );
 
-        diaryService.addDiary(userId, diary);
+            diaryService.addDiary(userId, diary);
 
-        return Map.of("message", "Diary saved", "id", diaryId);
+            return Map.of("message", "Diary saved", "id", diaryId);
+        } catch (Exception e) {
+            System.out.println("Lỗi khi thêm nhật ký: " + e.getMessage());
+            e.printStackTrace();
+            return Map.of("error", "Không thể lưu nhật ký");
+        } finally {
+            System.out.println("Đã xử lý xong yêu cầu thêm nhật ký.");
+        }
     }
 
     @GetMapping("/{userId}")
     public List<Diary> getDiaries(@PathVariable String userId) {
-        return diaryService.getDiaries(userId);
+        try {
+            return diaryService.getDiaries(userId);
+        } catch (Exception e) {
+            System.out.println("Lỗi khi lấy danh sách nhật ký: " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>(); // Trả về danh sách rỗng nếu lỗi
+        } finally {
+            System.out.println("Đã xử lý xong yêu cầu lấy nhật ký.");
+        }
     }
 }
