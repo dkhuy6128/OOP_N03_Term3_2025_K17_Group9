@@ -1,4 +1,4 @@
-📝 Xây dựng ứng dụng quản lý Nhật ký cá nhân  
+# Xây dựng ứng dụng quản lý Nhật ký cá nhân  
 🧩 Yêu cầu:
 Giao diện Java Spring Boot.
 
