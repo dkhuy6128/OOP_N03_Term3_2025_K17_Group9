@@ -2,6 +2,7 @@ package com.diaryapp.controller;
 
 import com.diaryapp.model.Diary;
 import com.diaryapp.model.User;
+import com.diaryapp.model.UserDiary;
 import com.diaryapp.service.DiaryService;
 import com.diaryapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,27 +46,40 @@ public class DiaryController {
                             @ModelAttribute Diary diary,
                             @RequestParam(required = false) String participants) {
 
+        // Validate
         if (diary.getDate() == null || diary.getTitle() == null || diary.getTitle().isEmpty()) {
             return "redirect:/diaries/" + userId + "/add?error=missing_fields";
         }
 
-        // Lấy User từ userId
-        Optional<User> optionalUser = userService.findById(userId); // 👈 cần có userService
+        // Lấy user
+        Optional<User> optionalUser = userService.findById(userId);
         if (optionalUser.isEmpty()) {
             return "redirect:/users?error=user_not_found";
         }
         User user = optionalUser.get();
         diary.setUser(user);
+        // Gán ID cho diary
+        diary.setId(UUID.randomUUID().toString());
 
-        // Xử lý participants
+        // Gán participants
         if (participants != null && !participants.isEmpty()) {
             diary.setParticipants(Arrays.asList(participants.split("\\s*,\\s*")));
         } else {
             diary.setParticipants(Collections.emptyList());
         }
 
-        diary.setId(UUID.randomUUID().toString());
-        diaryService.addDiary(userId, diary);
+        // Tạo đối tượng trung gian UserDiary
+        UserDiary userDiary = new UserDiary();
+        userDiary.setUser(user);
+        userDiary.setDiary(diary);
+
+        // Thiết lập liên kết hai chiều
+        diary.setUserDiaries(List.of(userDiary));
+        user.setUserDiaries(List.of(userDiary));
+
+        // Lưu
+        diaryService.addDiary(userId, diary); // Hoặc diaryRepository.save(diary);
+
         return "redirect:/diaries/" + userId;
     }
 
