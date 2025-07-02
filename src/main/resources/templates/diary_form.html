@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Nhật ký</title>
@@ -62,6 +62,9 @@
 <body>
 <section class="section">
     <div class="container">
+        <a href="http://localhost:8080/" class="button" style="background-color: #2A50A3; color: white;">
+            ← Quay lại trang chủ
+        </a>
         <h1 class="title">Thêm / Sửa Nhật ký</h1>
         <form th:if="${diary.id == null}"
               th:action="@{/diaries/{userId}/save(userId=${userId})}"

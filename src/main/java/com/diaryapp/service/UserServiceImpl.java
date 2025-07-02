@@ -44,13 +44,12 @@ public class UserServiceImpl implements UserService {  // ✅ bỏ abstract
     }
 
     @Override
-    public Optional<User> findById(String id) {  // ✅ thêm method này để controller dùng
+    public Optional<User> findById(String id) {
         return userRepository.findById(id);
     }
 
     @Override
     public void init() {
-        userRepository.save(new User("user123", "Theo"));
-        userRepository.save(new User("admin", "Admin"));
+        userRepository.save(new User("user", "User"));
     }
 }

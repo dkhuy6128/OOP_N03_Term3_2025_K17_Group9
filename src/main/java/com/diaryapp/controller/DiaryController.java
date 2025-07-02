@@ -26,6 +26,12 @@ public class DiaryController {
         this.diaryService = diaryService;
     }
 
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("userId", "user123");
+        return "index";
+    }
+
     @GetMapping("/{userId}")
     public String list(@PathVariable String userId, Model model) {
         List<Diary> diaries = diaryService.getDiaries(userId);
