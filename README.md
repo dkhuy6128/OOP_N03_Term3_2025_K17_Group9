@@ -66,39 +66,20 @@ Sau đó chạy 2 file SQL có sẵn:
 source src/main/resources/database/schema.sql;
 source src/main/resources/database/data.sql;
 ```
-⚠️ Nếu gặp lỗi Failed to open file khi dùng source
-📌 Lỗi thường do sai đường dẫn hoặc MySQL đang ở sai thư mục
+### ⚠️ Nếu gặp lỗi `Failed to open file` khi dùng `source`
 
-💡 Cách xử lý:
-Tìm đường dẫn tuyệt đối tới file schema.sql và data.sql trên máy bạn
-Ví dụ:
+> 📌 Lỗi thường xảy ra khi **đường dẫn file sai** hoặc **MySQL đang ở thư mục khác**
 
-swift
-Sao chép
-Chỉnh sửa
-C:/Users/YourName/Downloads/diaryapp/src/main/resources/database/schema.sql
-Dùng lệnh source với đường dẫn đầy đủ trong MySQL terminal:
+**💡 Cách xử lý:**
 
-sql
-Sao chép
-Chỉnh sửa
+1. **Tìm đường dẫn đầy đủ** đến file `schema.sql` và `data.sql` trên máy bạn.  
+   Ví dụ: C:/Users/YourName/Downloads/diaryapp/src/main/resources/database/schema.sql
+
+2. **Dán đường dẫn vào lệnh `source` trong MySQL terminal:**
+```sql
 source C:/Users/YourName/Downloads/diaryapp/src/main/resources/database/schema.sql;
 source C:/Users/YourName/Downloads/diaryapp/src/main/resources/database/data.sql;
-✅ Nếu vẫn lỗi, hãy thử copy 2 file SQL ra thư mục dễ truy cập, như C:/SQL/, rồi chạy:
-
-sql
-Sao chép
-Chỉnh sửa
-source C:/SQL/schema.sql;
-source C:/SQL/data.sql;
-🧠 Ghi nhớ:
-Không cần dấu " " hoặc ' ' quanh đường dẫn
-
-Dùng dấu / hoặc \\ đều được trên Windows
-
-Đảm bảo bạn đã USE diarydb; trước khi chạy file data.sql
-
-🎯 Sau khi chạy thành công, các bảng và dữ liệu mẫu sẽ được tạo sẵn trong database diarydb.
+```
 
 > ✅ Bạn có thể chạy bằng MySQL Workbench hoặc terminal đều được.
 
