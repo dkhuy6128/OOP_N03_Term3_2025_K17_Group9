@@ -1,36 +1,141 @@
-# Xây dựng ứng dụng quản lý Nhật ký cá nhân  
-🧩 Yêu cầu:
-Giao diện Java Spring Boot.
+# 📔 Ứng Dụng Quản Lý Nhật Ký Cá Nhân
 
-Có chức năng quản lý nhật ký và người dùng.
+> Ứng dụng web giúp người dùng ghi lại nhật ký hằng ngày: hoạt động, cảm xúc, địa điểm, chi tiêu, người tham gia,… Với giao diện thân thiện và hệ thống quản lý rõ ràng theo từng người dùng.
 
-🔧 Chức năng chính:  
-✅ Thêm, sửa, xóa người dùng (User)  
-✅ Liệt kê thông tin về người dùng, có thể lọc ra các người dùng theo tên hoặc ID  
-✅ Có chức năng quản lý nhật ký cá nhân (Diary)  
-Thêm, sửa, xóa nhật ký  
- 
-Nhật ký bao gồm các thông tin: ngày viết, tiêu đề, địa điểm, người tham gia, loại hoạt động (đi ăn, đi chơi,...), chi tiêu, cảm xúc, đánh giá và ghi chú.   
+---
 
-✅ Có chức năng gán người dùng cho nhật ký   
-Một nhật ký có thể liên kết với nhiều người dùng, và một người dùng có thể có nhiều nhật ký.  
+## 🔑 Chức Năng Chính
 
-💾 Lưu trữ dữ liệu:  
-Dữ liệu được lưu trữ xuống file nhị phân để đảm bảo an toàn và dễ dàng truy xuất.
+### 👤 Người dùng
+- 🧑‍💼 Thêm / sửa / xoá người dùng
+- 🔍 Tìm kiếm người dùng theo tên hoặc ID
 
-🗂️ Cấu trúc chương trình:
-Cần tạo các lớp liên quan đến người dùng (User), nhật ký (Diary) và liên kết người dùng với nhật ký (UserDiary) để đọc, ghi xuống một hay nhiều file.
+### 📓 Nhật ký cá nhân
+- 📝 Thêm / sửa / xoá nhật ký
+- 🗓️ Quản lý các trường: ngày viết, tiêu đề, địa điểm, hoạt động, chi tiêu, cảm xúc, đánh giá, ghi chú
+- 👥 Thêm người tham gia
+- 🔗 Gán nhiều người dùng cho một nhật ký, và ngược lại
 
-🧠 Làm việc với dữ liệu trong bộ nhớ:
-Dữ liệu sẽ được lưu trữ trong các Collection tùy chọn như: ArrayList, LinkedList, Map, v.v. trong quá trình xử lý nghiệp vụ.
+---
 
-💡 Mở rộng (tuỳ chọn):
-Sinh viên có thể thêm các chức năng như:
+## ⚙️ Công Nghệ Sử Dụng
 
-Tìm kiếm nhật ký theo từ khóa trong tiêu đề hoặc ghi chú.
+| Thành phần    | Công nghệ                                      |
+|---------------|------------------------------------------------|
+| Backend       | Spring Boot 3.5.3                              |
+| Frontend      | Thymeleaf + Tailwind CSS                      |
+| Database      | MySQL 8.x                                      |
+| Build Tool    | Maven Wrapper (`./mvnw`)                       |
+| Java          | Java 17                                        |
 
-Lọc nhật ký theo ngày viết, loại hoạt động, hoặc mức độ cảm xúc.
+---
 
-Xuất báo cáo hoạt động hoặc chi tiêu theo tháng/năm.
+## 📋 Môi Trường Cần Thiết
 
-Tính tổng chi tiêu hoặc số lượng hoạt động mỗi người dùng.
+- Java 17 hoặc cao hơn  
+- Maven 3.8+ (đã kèm `mvnw`)  
+- MySQL 8.x  
+- IDE: IntelliJ IDEA / Eclipse / VS Code
+
+---
+
+## 🚀 Hướng Dẫn Cài Đặt
+
+### 1️⃣ Clone dự án
+
+```bash
+git clone https://github.com/dkhuy6128/OOP_N03_Term3_2025_K17_Group9/
+cd diaryapp
+```
+
+Hoặc tải về bằng nút "Download ZIP" và giải nén.
+
+---
+
+### 2️⃣ Tạo cơ sở dữ liệu MySQL
+
+Đăng nhập MySQL rồi tạo database:
+
+```sql
+CREATE DATABASE IF NOT EXISTS diarydb;
+```
+
+Sau đó chạy 2 file SQL có sẵn:
+
+```sql
+source src/main/resources/database/schema.sql;
+source src/main/resources/database/data.sql;
+```
+
+> ✅ Bạn có thể chạy bằng MySQL Workbench hoặc terminal đều được.
+
+---
+
+### 3️⃣ Cấu hình kết nối cơ sở dữ liệu
+
+Mở file:
+
+#### `src/main/resources/application.properties`
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/diarydb
+spring.datasource.username=root
+spring.datasource.password=your_password
+```
+
+> 🔐 Thay `your_password` bằng mật khẩu MySQL thật trên máy bạn.
+
+---
+
+### 4️⃣ Chạy ứng dụng
+
+#### 👉 Cách 1: Qua IntelliJ IDEA (giao diện)
+- Mở project
+- Chạy file `DiaryappApplication.java`
+- Truy cập [http://localhost:8080](http://localhost:8080)
+
+#### 👉 Cách 2: Qua terminal
+```bash
+./mvnw spring-boot:run
+```
+
+---
+
+## 👨‍💻 Phân Công Thành Viên
+
+### 1. **Đỗ Khắc Huy**
+- 🔧 Back-end (Service, Controller, xử lý logic nghiệp vụ)  
+- 🧪 Kiểm thử và fix bug Back-end  
+- 🛠️ Thiết kế cơ sở dữ liệu (bảng `users`, `diaries`, `user_diaries`, `diary_participants`)  
+- 🧮 Viết API quản lý người dùng và nhật ký  
+- ⚙️ Cấu hình `application.properties` và khởi tạo DB từ `schema.sql`, `data.sql`
+
+### 2. **Đỗ Huy**
+- 🌐 Front-end (Thymeleaf + Tailwind CSS)  
+- 🖼️ Thiết kế giao diện viết nhật ký, danh sách, thống kê  
+- 💅 CSS layout, responsive cho toàn bộ UI  
+- 🧪 Kiểm thử UI & logic kết nối Front–Back  
+- 🎨 Thiết kế giao diện người tham gia (participants)
+
+### 3. **Khắc Huy Đỗ**
+- 📝 Viết tài liệu `README.md`, hướng dẫn cài đặt & triển khai  
+- 🧰 Xử lý cấu hình Maven (`pom.xml`, `./mvnw`)  
+- 🗂️ Quản lý thư mục tài nguyên (`resources/`)  
+- 🧪 Kiểm tra toàn bộ flow app (từ nhập → lưu → thống kê)  
+- 🔗 Thử nghiệm tương thích với MySQL và IDE khác nhau
+
+---
+
+## 📌 Ghi Chú
+
+- Ứng dụng sử dụng `schema.sql` + `data.sql` nên **cần đảm bảo MySQL đang chạy trước khi khởi động app**
+- Nếu không muốn load dữ liệu mẫu, có thể để trống file `data.sql`
+- Mật khẩu MySQL nên đặt đúng và dùng quyền đủ để tạo bảng
+
+---
+
+## 📬 Liên Hệ
+
+- Email: [23017163@st.phenikaa-uni.edu.vn@gmail.com](mailto:23017163@st.phenikaa-uni.edu.vn)  
+- GitHub: [github.com/dkhuy6128](https://github.com/dkhuy6128)
+
+---
