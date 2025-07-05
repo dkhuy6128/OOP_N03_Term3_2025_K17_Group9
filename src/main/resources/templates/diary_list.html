@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Nhật ký</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        .emoji {
+            font-size: 20px;
+        }
+        .stars {
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <a href="http://localhost:8080/" class="button" style="background-color: #2A50A3; color: white;">
+            ← Quay lại trang chủ
+        </a>
+        <h1 class="title has-text-centered is-size-3 mb-5">
+            📖 Danh sách nhật kí
+        </h1>
+        <a th:href="@{'/diaries/' + ${userId} + '/add'}" class="button is-primary">+ Thêm nhật ký</a>
+        <br/><br/>
+        <form th:action="@{'/diaries/' + ${userId} + '/search'}" method="get" class="columns is-multiline">
+            <div class="column is-3">
+                <input class="input" type="text" name="keyword" placeholder="Tìm tiêu đề hoặc hoạt động..."
+                       th:value="${keyword}">
+            </div>
+            <div class="column is-2">
+                <div class="select is-fullwidth">
+                    <select name="feeling">
+                        <option value="">-- Cảm xúc --</option>
+                        <option th:selected="${feeling == 'Yêu thích ❤️'}">Yêu thích ❤️</option>
+                        <option th:selected="${feeling == 'Rất vui 😄'}">Rất vui 😄</option>
+                        <option th:selected="${feeling == 'Buồn 😢'}">Buồn 😢</option>
+                        <option th:selected="${feeling == 'Không vui 😐'}">Không vui 😐</option>
+                        <option th:selected="${feeling == 'Tệ 😞'}">Tệ 😞</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-2">
+                <div class="select is-fullwidth">
+                    <select name="rating">
+                        <option value="">-- Số sao --</option>
+                        <option value="5" th:selected="${rating == 5}">5 sao</option>
+                        <option value="4" th:selected="${rating == 4}">4 sao</option>
+                        <option value="3" th:selected="${rating == 3}">3 sao</option>
+                        <option value="2" th:selected="${rating == 2}">2 sao</option>
+                        <option value="1" th:selected="${rating == 1}">1 sao</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-2">
+                <div class="select is-fullwidth">
+                    <select name="sort">
+                        <option value="">-- Sắp xếp --</option>
+                        <option value="desc" th:selected="${sort == 'desc'}">Sao giảm dần</option>
+                        <option value="asc" th:selected="${sort == 'asc'}">Sao tăng dần</option>
+                        <option value="date_desc" th:selected="${sort == 'date_desc'}">Mới nhất</option>
+                        <option value="date_asc" th:selected="${sort == 'date_asc'}">Cũ nhất</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-2">
+                <div class="select is-fullwidth">
+                    <select name="month">
+                        <option value="">-- Tháng --</option>
+                        <option th:each="i : ${#numbers.sequence(1,12)}"
+                                th:value="${i < 10 ? '0' + i : i}"
+                                th:text="|Tháng ${i}|"
+                                th:selected="${month == (i < 10 ? '0' + i : i)}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-2">
+                <div class="select is-fullwidth">
+                    <select name="year">
+                        <option value="">-- Năm --</option>
+                        <option value="2025" th:selected="${year == 2025}">2025</option>
+                        <option value="2024" th:selected="${year == 2024}">2024</option>
+                        <option value="2023" th:selected="${year == 2023}">2023</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-2">
+                <button class="button is-info is-fullwidth" type="submit">Lọc</button>
+            </div>
+            <div class="column is-2">
+                <a th:href="@{'/diaries/' + ${userId}}" class="button is-info is-fullwidth">Bỏ lọc</a>
+            </div>
+        </form>
+        </form>
+
+        <br/>
+
+        <table class="table is-fullwidth is-striped is-hoverable">
+            <thead>
+            <tr>
+                <th>Ngày</th>
+                <th>Tiêu đề</th>
+                <th>Hoạt động</th>
+                <th>Chi tiêu</th>
+                <th>Địa điểm</th>
+                <th>Đi cùng</th>
+                <th>Ghi chú</th>
+                <th>Cảm xúc</th>
+                <th class="has-text-centered">Đánh giá</th>
+                <th class="has-text-centered">Thao tác</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="diary : ${diaries}">
+                <td th:text="${diary.date}">2025-06-26</td>
+                <td th:text="${diary.title}">Tiêu đề</td>
+                <td th:text="${diary.activity}">Hoạt động</td>
+                <td style="white-space: nowrap;" th:text="${diary.amount} + ' vnđ'">0 vnđ</td>
+                <td th:text="${diary.location}">Địa điểm</td>
+                <td>
+                    <ul>
+                        <li th:each="p : ${diary.participants}" th:text="${p}">Người đi cùng</li>
+                    </ul>
+                </td>
+                <td th:text="${diary.notes}">Ghi chú</td>
+                <td class="emoji has-text-centered"
+                    style="font-size: 1rem; white-space: nowrap;"
+                    th:text="${diary.feeling}">❤️</td>
+                <td class="has-text-centered stars">
+            <span th:each="i : ${#numbers.sequence(1, 5)}"
+                  th:text="${i <= diary.rating ? '★' : '☆'}"
+                  th:classappend="${i <= diary.rating} ? 'has-text-warning' : ''"
+                  style="margin-right: 1px;">★</span>
+                </td>
+                <td class="has-text-centered">
+                    <a th:href="@{'/diaries/' + ${userId} + '/edit/' + ${diary.id}}"
+                       class="button is-small is-info is-light mr-1">
+                        ✏️
+                    </a>
+                    <a th:href="@{'/diaries/' + ${userId} + '/delete/' + ${diary.id}}"
+                       class="button is-small is-danger is-light"
+                       onclick="return confirm('Bạn chắc chắn muốn xóa?')">
+                        🗑️
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
